@@ -19,7 +19,7 @@ class Season(models.Model):
 	audition_play = models.ForeignKey('Play', related_name='+', blank=True, null=True)
 
 	def __unicode__(self):
-		return u"%s-%s Season" % (end_year-1, end_year)
+		return u"%s-%s Season" % (self.end_year-1, self.end_year)
 
 class Play(models.Model):
 	season = models.ForeignKey(Season);
@@ -57,7 +57,7 @@ class Cast(models.Model):
 	play = models.ForeignKey(Play)
 
 	def __unicode__(self):
-		return u"%s as %s in %s" % (actor.name, role, play.title)
+		return u"%s as %s in %s" % (self.actor.name, self.role, self.play.title)
 
 class Student(models.Model):
 	first_name = models.CharField(max_length=50)
@@ -72,4 +72,4 @@ class Student(models.Model):
 	name = property(_get_name)
 
 	def __unicode__(self):
-		return u"%s, Class of %s" % (name, class_year)
+		return u"%s, Class of %s" % (self.name, self.class_year)
