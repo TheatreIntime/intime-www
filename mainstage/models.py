@@ -52,7 +52,7 @@ class Show(models.Model):
 	ticket_id = models.SlugField(null=True, blank=True)
 
 	def __unicode__(self):
-		u"%s Show on %s" % (self.play.title, self.showtime.strftime("%A, %d %B %Y %I:%M%p"))
+		u"%s Show" % (self.play.title)
 
 class Cast(models.Model):
 	actor = models.ForeignKey('Student', blank=True)
