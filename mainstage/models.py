@@ -15,8 +15,8 @@ Student: Specifically a Princeton Student.
 class Season(models.Model):
 	end_year = models.PositiveSmallIntegerField(unique=True)
 	is_current = models.BooleanField()
-	current_play = models.ForeignKey('Play', related_name='+')
-	audition_play = models.ForeignKey('Play', related_name='+')
+	current_play = models.ForeignKey('Play', related_name='+', blank=True)
+	audition_play = models.ForeignKey('Play', related_name='+', blank=True)
 
 	def __unicode__(self):
 		return u"%s-%s Season" % (end_year-1, end_year)
@@ -52,7 +52,7 @@ class Show(models.Model):
 	ticket_id = models.SlugField()
 
 class Cast(models.Model):
-	actor = models.ForeignKey('Student')
+	actor = models.ForeignKey('Student', blank=True)
 	role = models.CharField(max_length = 100)
 	play = models.ForeignKey(Play)
 
