@@ -36,7 +36,7 @@ class Play(models.Model):
 	# 1 = Root of play group
 	# 2 = In a play group, see foreign key for group
 	playgroup = models.PositiveSmallIntegerField(default=0)
-	playgroup_root = models.ForeignKey(Play, blank=True)
+	playgroup_root = models.ForeignKey('self', blank=True)
 
 	def in_a_playgroup(self):
 		return (self.playgroup == 2)
