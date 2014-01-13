@@ -36,7 +36,7 @@ class Play(models.Model):
 	# 1 = Root of play group
 	# 2 = In a play group, see foreign key for group
 	playgroup = models.PositiveSmallIntegerField(default=0)
-	playgroup_root = models.ForeignKey('self', blank=True)
+	playgroup_root = models.ForeignKey('self', blank=True, null=True)
 
 	def in_a_playgroup(self):
 		return (self.playgroup == 2)
@@ -64,8 +64,8 @@ class Student(models.Model):
 	last_name = models.CharField(max_length=50)
 	netid = models.CharField(max_length=50)
 	class_year = models.PositiveSmallIntegerField()
-	bio = models.TextField()
-	pic = models.URLField()
+	bio = models.TextField(default="Princeton Student")
+	pic = models.URLField(default="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png")
 
 	def _get_name(self):
 		return u"%s %s" % (self.first_name, self.last_name)
