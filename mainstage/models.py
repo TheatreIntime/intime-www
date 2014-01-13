@@ -49,7 +49,10 @@ class Show(models.Model):
 	showtime = models.DateTimeField()
 
 	# Not used now, eventually used for ticket sales
-	ticket_id = models.SlugField()
+	ticket_id = models.SlugField(null=True, blank=True)
+
+	def __unicode__(self):
+		u"%s Show on %s" % (self.play.title, self.showtime.strftime("%A, %d %B %Y %I:%M%p"))
 
 class Cast(models.Model):
 	actor = models.ForeignKey('Student', blank=True)
