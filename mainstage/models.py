@@ -15,8 +15,8 @@ Student: Specifically a Princeton Student.
 class Season(models.Model):
 	end_year = models.PositiveSmallIntegerField(unique=True)
 	is_current = models.BooleanField()
-	current_play = models.ForeignKey(Play)
-	audition_play = models.ForeignKey(Play)
+	current_play = models.ForeignKey('Play')
+	audition_play = models.ForeignKey('Play')
 
 	def __unicode__(self):
 		return u"%s-%s Season" % (end_year-1, end_year)
@@ -26,7 +26,7 @@ class Play(models.Model):
 	title = models.CharField(max_length=50)
 	blurb = models.TextField()
 	writer = models.CharField(max_length=70)
-	director = models.ForeignKey(Student)
+	director = models.ForeignKey('Student')
 
 	# By Default, use Theatre Intime's Logo
 	poster = models.URLField(default="https://pbs.twimg.com/profile_images/3628492222/de57d0de343e4818a64ea41bd3b84bf9.jpeg")
@@ -52,7 +52,7 @@ class Show(models.Model):
 	ticket_id = models.SlugField()
 
 class Cast(models.Model):
-	actor = models.ForeignKey(Student)
+	actor = models.ForeignKey('Student')
 	role = models.CharField(max_length = 100)
 	play = models.ForeignKey(Play)
 
