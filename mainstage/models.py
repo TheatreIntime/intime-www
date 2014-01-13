@@ -72,4 +72,4 @@ class Student(models.Model):
 	name = property(_get_name)
 
 	def __unicode__(self):
-		return name
+		return u"%s, Class of %s" % (name, class_year)
